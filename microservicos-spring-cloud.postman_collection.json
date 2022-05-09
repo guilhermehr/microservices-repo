@@ -1,0 +1,273 @@
+{
+	"variables": [],
+	"info": {
+		"name": "microservicos-spring-cloud",
+		"_postman_id": "9f208867-ee4d-5e8a-1fc6-51af67941789",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "LOJA - compa",
+			"request": {
+				"url": "http://localhost:8080/compra",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer e972b67c-82f1-46bc-910c-035debd71388",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"itens\": [\n\t\t{\n\t\t\t\"id\": 1,\n\t\t\t\"quantidade\": 5\n\t\t},\n\t\t{\n\t\t\t\"id\": 2,\n\t\t\t\"quantidade\": 1\n\t\t}\n\t],\n\t\"endereco\": {\n\t\t\"rua\": \"Rua da Maria\",\n\t\t\"numero\": \"123\",\n\t\t\"estado\": \"GO\"\n\t}\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "AUTH - token",
+			"request": {
+				"url": "http://localhost:8088/oauth/token",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Basic bG9qYTpsb2phcHdk",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "scope",
+							"value": "web",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "grant_type",
+							"value": "password",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "joao",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "joaopwd",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "AUTH - user",
+			"request": {
+				"url": {
+					"raw": "http://localhost:8088/user?access_token",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8088",
+					"path": [
+						"user"
+					],
+					"query": [
+						{
+							"key": "access_token",
+							"value": "",
+							"equals": false,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer e972b67c-82f1-46bc-910c-035debd71388",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "ZUUL - loja compa",
+			"request": {
+				"url": "http://localhost:5555/loja/compra",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"itens\": [\n\t\t{\n\t\t\t\"id\": 1,\n\t\t\t\"quantidade\": 5\n\t\t},\n\t\t{\n\t\t\t\"id\": 2,\n\t\t\t\"quantidade\": 1\n\t\t}\n\t],\n\t\"endereco\": {\n\t\t\"rua\": \"Rua da Maria\",\n\t\t\"numero\": \"123\",\n\t\t\"estado\": \"GO\"\n\t}\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "LOJA - getById",
+			"request": {
+				"url": "http://localhost:8080/compra/34",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "ZUUL - routes",
+			"request": {
+				"url": "http://localhost:5555/actuator/routes",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "ZUUL - fornecedor info",
+			"request": {
+				"url": "http://localhost:5555/fornecedor/info/GO",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "ZUUL - fornecedor pedido",
+			"request": {
+				"url": "http://localhost:5555/fornecedor/pedido",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer e972b67c-82f1-46bc-910c-035debd71388",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "FORNECEDOR - info",
+			"request": {
+				"url": "http://localhost:8081/info/GO",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer e972b67c-82f1-46bc-910c-035debd71388",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "FORNECEDOR - produtos",
+			"request": {
+				"url": "http://localhost:8081/produto/df",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer e972b67c-82f1-46bc-910c-035debd71388",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "FORNECEDOR - pedido",
+			"request": {
+				"url": "http://localhost:8081/pedido",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer e972b67c-82f1-46bc-910c-035debd71388",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n\t{\n\t\t\"id\": 1,\n\t\t\"quantidade\": 5\n\t},\n\t{\n\t\t\"id\": 2,\n\t\t\"quantidade\": 1\n\t}\n]"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "EUREKA - apps",
+			"request": {
+				"url": "http://localhost:8761/eureka/apps",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "CONFIG-SERVER - fornecedor",
+			"request": {
+				"url": "http://localhost:8888/fornecedor/default",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
